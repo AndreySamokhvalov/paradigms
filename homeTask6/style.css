@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000000;
+}
+
+.contant {
+    margin-top: 70px;
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    align-items: center;
+}
+
+.headTtile {
+
+    font-size: 100px;
+    color: #ffd000;
+    margin-bottom: 150px;
+}
+.title{
+    display: flex;
+    flex-direction: row;
+}
+
+#stopwatch {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 100px;
+    margin-bottom: 100px;
+    color: #ffd000;
+}
+
+#start {
+    position: absolute;
+}
+
+#pause {
+    position: absolute;
+    visibility: hidden;
+}
+
+.startPause {
+    position: relative;
+}
+
+.buttRes {
+
+    padding: 25px 30px;
+    background-color: #000000;
+    color: #ffd000;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 4px;
+    overflow: hidden;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.buttRes:hover {
+
+    border-radius: 50%;
+    background: #ffd000;
+    color: #050801;
+    box-shadow: 0 0 5px #ffd000,
+        0 0 25px #ffd000,
+        0 0 50px #ffd000,
+        0 0 200px #ffd000;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+.btns {
+    gap: 130px;
+    display: flex;
+    justify-content: center;
+}
+
+.reset:hover {
+    fill: #ffd000;
+    transition: 0.2s;
+}
+
+svg:hover {
+    fill: #ffd000;
+    transition: 0.2s;
+}
+
+svg {
+    border-color: #ffd000;
+
+}
+
+svg:active {
+    fill: #ec1818;
+
+}
+
+a {
+    cursor: pointer;
+}

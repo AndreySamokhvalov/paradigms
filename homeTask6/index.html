@@ -1,0 +1,109 @@
+<!-- Реализовать секундомер на любом языке программирования в любой парадигме. Секундомер должен поддерживать следующий функционал:
+○ Запуск
+○ Пауза
+○ Выход из паузы
+○ Остановка -->
+
+<!-- В данном коде использованы функциональная, процедурная и структурная парадигмы. -->
+
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Stopwatch</title>
+</head>
+
+<body>
+  <div class="contant">
+    <h1 class="headTtile">STOPWATCH</h1>
+    <h1></h1>
+    <h1 id="stopwatch">00:00:00.0</h1>
+    <div class="btns">
+      <div class="startPause">
+        <a id="pause">
+          <svg xmlns="http://www.w3.org/2000/svg" width="61" height="61" viewBox="0 0 61 61" fill="none">
+            <path d="M5.03308 15.0456C5.03308 10.3315 5.03308 7.97449 6.49756 6.51004C7.96201 5.04556 10.319 5.04556 15.0331 5.04556C19.7471 5.04556 22.1042 5.04556 23.5686 6.51004C25.0331 7.97449 25.0331 10.3315 25.0331 15.0456V45.0456C25.0331 49.7596 25.0331 52.1166 23.5686 53.5811C22.1042 55.0456 19.7471 55.0456 15.0331 55.0456C10.319 55.0456 7.96201 55.0456 6.49756 53.5811C5.03308 52.1166 5.03308 49.7596 5.03308 45.0456V15.0456Z" stroke="#FFD000" stroke-width="3.75"/>
+            <path d="M35.0331 15.0456C35.0331 10.3315 35.0331 7.97449 36.4976 6.51004C37.9621 5.04556 40.3191 5.04556 45.0331 5.04556C49.7471 5.04556 52.1041 5.04556 53.5686 6.51004C55.0331 7.97449 55.0331 10.3315 55.0331 15.0456V45.0456C55.0331 49.7596 55.0331 52.1166 53.5686 53.5811C52.1041 55.0456 49.7471 55.0456 45.0331 55.0456C40.3191 55.0456 37.9621 55.0456 36.4976 53.5811C35.0331 52.1166 35.0331 49.7596 35.0331 45.0456V15.0456Z" stroke="#FFD000" stroke-width="3.75"/>
+          </svg>
+        </a>
+        <a id="start" class="startIcon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="52" height="55" viewBox="0 0 52 55" fill="none">
+            <path d="M45.8233 21.081C51.128 23.9658 51.128 31.4333 45.8233 34.318L13.7933 51.7358C8.63763 54.5395 2.30176 50.8903 2.30176 45.1173V10.2818C2.30176 4.50871 8.63763 0.85956 13.7933 3.66321L45.8233 21.081Z" stroke="#FFD000" stroke-width="3.75"/>
+          </svg>
+        </a>
+      </div>
+      <div>
+        <a id="reset"><svg xmlns="http://www.w3.org/2000/svg" width="61" height="61" viewBox="0 0 512 512">
+            <style>
+              svg {
+                fill: #626668
+              }
+            </style>
+            <path
+              d="M463.5 224H472c13.3 0 24-10.7 24-24V72c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2L413.4 96.6c-87.6-86.5-228.7-86.2-315.8 1c-87.5 87.5-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3c62.2-62.2 162.7-62.5 225.3-1L327 183c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8H463.5z" />
+          </svg>
+        </a></button></a>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+
+    let stopwatch = document.getElementById("stopwatch");
+    let btnStart = document.getElementById("start");
+    let btnPause = document.getElementById("pause");
+    let btnReset = document.getElementById("reset");
+    countSec = 0; let seconds = 0; let minutes = 0; let hours = 0;
+
+    let interval;
+
+    function upTime() {
+      countSec++;
+      if (countSec === 10) {
+        seconds++;
+        countSec = 0;
+      }
+      if (seconds === 60) {
+        minutes++;
+        seconds = 0;
+      }
+      if (minutes === 60) {
+        hours++;
+        minutes = 0;
+      }
+      stopwatch.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${countSec.toString()}`;
+    }
+
+    start.addEventListener('click', () => {
+      interval = setInterval(upTime, 100);
+      start.style.display = 'none';
+      pause.style.visibility = 'initial';
+    });
+
+    btnPause.addEventListener('click', () => {
+      clearInterval(interval);
+      start.setAttribute('disabled', false)
+      btnStart.style.display = '';
+      btnPause.style.visibility = 'hidden';
+    });
+
+    btnReset.addEventListener('click', () => {
+      clearInterval(interval);
+      seconds = 0;
+      minutes = 0;
+      hours = 0;
+      countSec = 0;
+
+      stopwatch.textContent = '00:00:00.0';
+      start.style.display = '';
+      pause.style.visibility = 'hidden';
+    });
+  </script>
+</body>
+
+</html>
